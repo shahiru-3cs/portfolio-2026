@@ -1,0 +1,17 @@
+{
+  "name": "shahiru-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "npx serve out",
+    "deploy": "next build && npx wrangler deploy"
+  },
+  "dependencies": {
+    "lenis": "^1.3.0",
+    "next": "^15.5.7",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  }
+}
