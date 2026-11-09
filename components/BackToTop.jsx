@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { scrollToId } from '../lib/scroll';
+import { scrollToId, subscribe } from '../lib/scroll';
 
 /** Round "back to top" button with a ring that fills as you scroll down the page. */
 export default function BackToTop() {
@@ -9,20 +9,19 @@ export default function BackToTop() {
   const ring = useRef(null);
 
   useEffect(() => {
-    const on = () => {
+    // Runs in the shared scroll frame (lib/scroll.js): measure first, write after.
+    let last = -1;
+    return subscribe(() => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const k = max > 0 ? window.scrollY / max : 0;
+      if (Math.abs(k - last) < 0.001) return undefined;
+      last = k;
       const shouldShow = window.scrollY > window.innerHeight * 1.2;
-      setShown((prev) => (prev !== shouldShow ? shouldShow : prev));
-      if (ring.current) ring.current.style.strokeDashoffset = String(100 - k * 100);
-    };
-    on();
-    window.addEventListener('scroll', on, { passive: true });
-    window.addEventListener('resize', on);
-    return () => {
-      window.removeEventListener('scroll', on);
-      window.removeEventListener('resize', on);
-    };
+      return () => {
+        setShown((prev) => (prev !== shouldShow ? shouldShow : prev));
+        if (ring.current) ring.current.style.strokeDashoffset = String(100 - k * 100);
+      };
+    });
   }, []);
 
   return (

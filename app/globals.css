@@ -728,6 +728,45 @@ html.lenis body {
   }
 }
 
+/* Phones / touch: same hero, but every scroll frame is a cheap move for the GPU.
+   On desktop the tiles fly towards the camera (their depth changes every frame).
+   A phone has to redraw each SVG tile at its new size on every frame, so the
+   scroll stuttered and stuck. Here the depth of every tile and card stays fixed:
+   tiles spread outwards and fade, cards gather and sink. Only position and
+   opacity change while scrolling, which the GPU does without redrawing. */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .hero__sticky {
+    -webkit-backface-visibility: visible;
+    backface-visibility: visible;
+  }
+
+  .hero__tile {
+    filter: none;
+  }
+
+  .hero__item:not(.hero__item--card) {
+    --k: calc(1 + var(--p, 0) * 0.9);
+    transform: translate(-50%, -50%) translate3d(calc(var(--x) * var(--k) * 1vw), calc(var(--y) * var(--k) * 1vh), calc(var(--z) * 1px)) rotateY(var(--ry)) rotateZ(var(--rz));
+    opacity: calc(clamp(0, calc((860 - var(--z)) / 260), 1) * (1 - clamp(0, calc((var(--p, 0) - 0.15) / 0.3), 1)));
+  }
+
+  .hero__item:not(.hero__item--card) .hero__float {
+    animation: heroIn 1.7s var(--ease) both var(--delay, 0s);
+  }
+
+  .hero__item--card {
+    transform: translate(-50%, -50%) translate3d(calc((var(--x) + (var(--gx) - var(--x)) * var(--g)) * 1vw),
+        calc((var(--y) + (var(--gy) - var(--y)) * var(--g)) * 1vh + var(--s) * 48vh),
+        calc(var(--gz) * 1px)) rotateZ(calc(var(--rz) + (var(--grz) - var(--rz)) * var(--g)));
+  }
+
+  .hero .qcard {
+    box-shadow:
+      0 14px 28px -12px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(0, 0, 0, 0.04);
+  }
+}
+
 /* ============ 01 ABOUT ============ */
 
 /* About overlaps the last screen of the pinned hero, so its text slides over the sinking cards */

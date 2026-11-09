@@ -38,19 +38,18 @@ export default function Uptime() {
     if (!el) return undefined;
     let lastP = -1;
     let lastInk = -1;
+    const pinEl = el.firstElementChild;
 
     return subscribe(() => {
+      // read phase (see lib/scroll.js): measure only, write in the returned function
       const r = el.getBoundingClientRect();
-      const vh = window.innerHeight;
+      const vh = (pinEl && pinEl.offsetHeight) || window.innerHeight;
 
       // Pinned progress for CSS variables (--p: 0 when top hits top, 1 when bottom hits bottom)
       const pinDist = Math.max(1, r.height - vh);
       const pinP = Math.max(0, Math.min(1, -r.top / pinDist));
 
-      if (Math.abs(pinP - lastP) > 0.0004) {
-        lastP = pinP;
-        el.style.setProperty('--p', pinP.toFixed(4));
-      }
+      const writeP = Math.abs(pinP - lastP) > 0.0004;
 
       // Ink splash starts as soon as Uptime pins at the top of the viewport (r.top <= 0),
       // ensuring the organic splash is NEVER cropped by the bottom edge of the previous section.
@@ -58,12 +57,19 @@ export default function Uptime() {
       const INK_PIN_END = 0.14;
       const inkP = r.top > 0 ? 0 : Math.min(1, pinP / INK_PIN_END);
 
-      if (Math.abs(inkP - lastInk) > 0.0004) {
-        lastInk = inkP;
-        if (ink.current) {
-          ink.current.setProgress(inkP);
+      const writeInk = Math.abs(inkP - lastInk) > 0.0004;
+      if (!writeP && !writeInk) return undefined;
+
+      return () => {
+        if (writeP) {
+          lastP = pinP;
+          el.style.setProperty('--p', pinP.toFixed(4));
         }
-      }
+        if (writeInk) {
+          lastInk = inkP;
+          if (ink.current) ink.current.setProgress(inkP);
+        }
+      };
     });
   }, []);
 
