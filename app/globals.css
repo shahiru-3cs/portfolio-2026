@@ -728,38 +728,18 @@ html.lenis body {
   }
 }
 
-/* Phones / touch: a static, flat version of the hero.
-   iPhone Safari could only redraw the pinned 3D scene ~8 times a second while
-   scrolling (it re-rasterises every SVG tile in 3D space on each update), so the
-   page stuck and jumped. Safari also drew tiles with 3D depth over the name,
-   ignoring z-index. On phones the hero is one normal screen: no pinning, no 3D,
-   nothing linked to scroll. Tiles keep their depth look (size + stacking from
-   --z) and still pop in and float; those animations run on the GPU only.
-   Keep this query in sync with TOUCH_MEDIA in lib/scroll.js. */
+/* Phones / touch: the same scroll animation, built so the GPU never redraws.
+   iPhone Safari stuttered (~8 updates a second) on the 3D version: every scroll step
+   changed each tile's depth, so it re-rasterised all 16 SVG tiles at a new size.
+   Here the scene is flat 2D. Each tile and card is drawn ONCE at a fixed size
+   (depth is faked with a static scale, dimming and stacking order from --z);
+   scrolling only changes position, rotation and opacity, which is a cheap
+   GPU move. Tiles burst outwards and fade, cards gather and sink, the name lifts.
+   Flat layers also fix Safari drawing 3D tiles on top of the name. */
 @media (max-width: 900px), (hover: none) and (pointer: coarse) {
-  .hero {
-    height: auto;
-  }
-
   .hero__sticky {
-    position: relative;
-    height: 100vh;
-    height: 100svh;
-    min-height: 560px;
-    -webkit-transform: none;
-    transform: none;
     -webkit-backface-visibility: visible;
     backface-visibility: visible;
-  }
-
-  .hero__title,
-  .hero__scroll {
-    transform: none;
-    opacity: 1;
-  }
-
-  .hero__scroll {
-    transform: translateX(-50%);
   }
 
   .hero__scene {
@@ -772,18 +752,21 @@ html.lenis body {
     transform-style: flat;
   }
 
-  .hero__item,
-  .hero__item--card {
-    --ds: calc(1000 / (1000 - var(--z)));
+  .hero__item {
+    --ds: calc(1000 / (1000 - var(--z))); /* static "depth" scale, never animated */
+    --k: calc(1 + var(--p, 0) * 1.15); /* tiles spread outwards as you scroll */
     transform-style: flat;
-    transform: translate(-50%, -50%) translate(calc(var(--x) * 1vw), calc(var(--y) * 1vh)) rotate(var(--rz)) scale(var(--ds));
-    opacity: clamp(0.35, calc(0.35 + var(--ds) * 0.65), 1);
+    transform: translate(-50%, -50%) translate3d(calc(var(--x) * var(--k) * 1vw), calc(var(--y) * var(--k) * 1vh), 0) rotate(var(--rz)) scale(var(--ds));
+    opacity: calc(clamp(0.35, calc(0.35 + var(--ds) * 0.65), 1) * (1 - clamp(0, calc((var(--p, 0) - 0.1) / 0.35), 1)));
     z-index: calc(1200 + var(--z));
-    will-change: auto;
+    will-change: transform, opacity;
   }
 
   .hero__item--card {
-    opacity: 1;
+    transform: translate(-50%, -50%) translate3d(calc((var(--x) + (var(--gx) - var(--x)) * var(--g)) * 1vw),
+        calc((var(--y) + (var(--gy) - var(--y)) * var(--g)) * 1vh + var(--s) * 48vh), 0) rotate(calc(var(--rz) + (var(--grz) - var(--rz)) * var(--g)));
+    opacity: calc(1 - var(--s) * 1.1);
+    z-index: calc(1300 + var(--gz));
   }
 
   .hero__tile {
@@ -795,7 +778,6 @@ html.lenis body {
       0 14px 28px -12px rgba(0, 0, 0, 0.6),
       0 0 0 1px rgba(0, 0, 0, 0.04);
   }
-
 }
 
 /* ============ 01 ABOUT ============ */
@@ -808,14 +790,6 @@ html.lenis body {
   margin-top: -100vh;
   padding: calc(var(--pad) + 14vh) var(--pad) calc(var(--pad) + 4vh);
   background: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.85) 22vh, #000 38vh);
-}
-
-/* touch tablets wider than 900px also get the static hero, so no overlap there either */
-@media (hover: none) and (pointer: coarse) {
-  .about {
-    margin-top: 0;
-    background: #000;
-  }
 }
 
 .about__inner {
@@ -2898,8 +2872,7 @@ html.lenis body {
   }
 
   .about {
-    margin-top: 0; /* the hero is not pinned on phones, so About simply follows it */
-    background: #000;
+    background: linear-gradient(to bottom, transparent 0, rgba(0, 0, 0, 0.9) 14vh, #000 24vh);
   }
 
   .about__body {
