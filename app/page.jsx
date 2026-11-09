@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import Preloader from '../components/Preloader';
-import BackToTop from '../components/BackToTop';
+// import BackToTop from '../components/BackToTop';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Uptime from '../components/sections/Uptime';
@@ -19,7 +19,7 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: schemaJson() }} />
       <Preloader />
       <Header />
-      <BackToTop />
+      {/* <BackToTop /> */}
       <main>
         <Hero />
         <About />
