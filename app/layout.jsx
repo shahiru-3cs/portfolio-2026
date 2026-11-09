@@ -33,6 +33,17 @@ export const metadata = {
   publisher: site.name,
   category: 'technology',
   referrer: 'origin-when-cross-origin',
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico', sizes: '32x32' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   alternates: {
     canonical: '/',
     types: { 'text/plain': '/llms.txt' },
