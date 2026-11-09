@@ -31,7 +31,29 @@ Each project, service and tile uses a generated pattern instead of an image:
 | 05 | Projects: pinned scene that switches project as you scroll, plus pill tabs | Totems |
 | 06 | Skills: count-up stats and falling skill bubbles | Stats |
 | 07 | Services: shield cards, scroll letter-drop headline, word-by-word text reveal | Guilds |
-| 08 | Contact: large CTA and footer | Get in early |
+| 08 | FAQ: answer-first questions (feeds the FAQPage schema) | — |
+| 09 | Contact: large CTA and footer | Get in early |
+
+## SEO, structured data and AEO
+
+All SEO settings live in the `seo` and `faq` exports in **`data/portfolio.js`**. Everything below is generated from that file at build time, so it stays in sync with the page.
+
+| File | What it produces |
+|------|------------------|
+| `app/layout.jsx` | `<title>`, meta description, keywords, canonical, robots and `googleBot` directives, Open Graph (`profile`), Twitter card, geo tags, search-console verification |
+| `lib/schema.js` | One JSON-LD `@graph`: `WebSite`, `ProfilePage`, `Person` (job, employer, degree, skills, socials, contact), `Service` ×3, `ItemList` of projects, `FAQPage`, `BreadcrumbList`, speakable selectors |
+| `components/sections/Faq.jsx` | Visible FAQ (chapter 08). Answer-first copy that Google AI Overviews, ChatGPT, Perplexity and Gemini can quote. Must match the `FAQPage` schema, so edit `faq.items` only |
+| `app/robots.js` | `/robots.txt`. Allows all crawlers, and names the AI answer-engine bots explicitly |
+| `app/sitemap.js` | `/sitemap.xml` with image entries |
+| `app/llms.txt/route.js` | `/llms.txt`, a plain-text profile for AI assistants ([llmstxt.org](https://llmstxt.org)) |
+| `app/manifest.js` | `/manifest.webmanifest` |
+| `public/og-image.png` | 1200×630 share image. Icons: `public/icon-*.png`, `app/apple-icon.png` |
+
+**Before you launch:**
+
+1. Set `site.url` to your real domain (it is used in every canonical, OG and schema URL).
+2. Add the verification codes to `seo.googleVerification` / `seo.bingVerification`, then submit `https://your-domain/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+3. Check the output with the [Rich Results Test](https://search.google.com/test/rich-results) and the [Schema validator](https://validator.schema.org).
 
 ## Fonts
 

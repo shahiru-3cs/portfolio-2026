@@ -84,7 +84,7 @@ export default function Hero() {
     <section id="top" className="hero" ref={ref}>
       <div className="hero__sticky">
         <h1 className="hero__title">
-          <span className="sr-only">{site.name}, {site.role}</span>
+          <span className="sr-only">{site.name}: React &amp; Next.js Developer in Sri Lanka </span>
           <Chars text={hero.title} className="hero__chars" />
         </h1>
 

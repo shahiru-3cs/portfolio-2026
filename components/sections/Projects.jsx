@@ -42,7 +42,7 @@ export default function Projects() {
         <div className="proj__visual" data-cursor="View">
           {items.map((it, i) => (
             <div key={it.name} className={`proj__shot ${i === active ? 'is-active' : ''}`} aria-hidden={i !== active}>
-              <BrowserMock variant={it.mock} pattern={it.pattern} palette={it.palette} image={it.image} alt={it.name} dark />
+              <BrowserMock variant={it.mock} pattern={it.pattern} palette={it.palette} image={it.image} alt={`${it.name} website screenshot: ${it.short}`} dark />
             </div>
           ))}
         </div>
@@ -71,7 +71,7 @@ export default function Projects() {
             ))}
           </div>
           <div className="proj__links">
-            <a href={p.live} target="_blank" rel="noreferrer">
+            <a href={p.live} target="_blank" rel="noopener noreferrer" aria-label={`Visit the ${p.name} live site`}>
               Live site ↗
             </a>
             {/* <a href={p.github} target="_blank" rel="noreferrer">

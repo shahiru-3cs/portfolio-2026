@@ -60,7 +60,7 @@ export default function Contact() {
         </div>
         <div className="foot__r">
           {site.socials.map((s) => (
-            <a key={s.label} href={s.href} target="_blank" rel="noreferrer">
+            <a key={s.label} href={s.href} target="_blank" rel="me noopener noreferrer">
               {s.label}
             </a>
           ))}

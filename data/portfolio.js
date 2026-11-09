@@ -26,6 +26,69 @@ export const site = {
   ],
 };
 
+// ─────────────────────────────────────────────────────────────
+//  SEO / AEO SETTINGS
+//  Used by app/layout.jsx (meta tags), lib/schema.js (JSON-LD),
+//  app/sitemap.js, app/robots.js and app/llms.txt.
+// ─────────────────────────────────────────────────────────────
+export const seo = {
+  // <title>: keep it under ~60 characters. Name first, then what you do and where.
+  title: 'Shahiru Roshen — React & Next.js Developer, Sri Lanka',
+  // Meta description: 140–160 characters, answer-first.
+  description:
+    'Shahiru Roshen is a React & Next.js developer in Sri Lanka building fast, accessible, SEO-friendly websites. Associate Developer at 3CS Asia. Open to freelance.',
+  // Longer summary used in structured data and llms.txt.
+  summary:
+    'Shahiru Roshen is a React and Next.js developer based in Gampaha, Sri Lanka. He works as an Associate React Developer at 3CS Asia, holds a BEng (Hons) in Software Engineering from the University of Westminster, and builds fast, accessible, SEO-friendly websites and web apps for freelance clients worldwide.',
+  jobTitle: 'Associate React Developer',
+  keywords: [
+    'Shahiru Roshen',
+    'React developer Sri Lanka',
+    'Next.js developer Sri Lanka',
+    'freelance web developer Sri Lanka',
+    'frontend developer Gampaha',
+    'React developer',
+    'Next.js developer',
+    'Tailwind CSS developer',
+    'Figma to React',
+    'website speed optimisation',
+    'Core Web Vitals',
+    'technical SEO',
+    'web accessibility',
+    'hire React developer',
+  ],
+  knowsAbout: [
+    'React',
+    'Next.js',
+    'JavaScript',
+    'Tailwind CSS',
+    'Node.js',
+    'HTML5',
+    'CSS3',
+    'REST APIs',
+    'Responsive web design',
+    'Web accessibility (WCAG)',
+    'Core Web Vitals',
+    'Technical SEO',
+    'Web performance optimisation',
+    'Component architecture',
+    'Git',
+  ],
+  locale: 'en_US',
+  language: 'en',
+  country: 'LK',
+  region: 'LK-12', // ISO 3166-2 code for Gampaha District
+  locality: 'Gampaha',
+  ogImage: '/og-image.png', // 1200×630, in /public
+  ogImageAlt: 'Shahiru Roshen — React & Next.js Developer. Fast, accessible, SEO-ready websites and web apps.',
+  twitterHandle: '', // e.g. '@shahiru' — leave empty if you don't use X/Twitter
+  // Paste the codes from Google Search Console / Bing Webmaster Tools (HTML tag method).
+  googleVerification: '',
+  bingVerification: '',
+  employer: { name: '3CS Asia', url: '' }, // add the company URL if it has one
+  school: { name: 'University of Westminster', url: 'https://www.westminster.ac.uk' },
+};
+
 export const nav = [
   { id: 'about', label: 'About' },
   { id: 'experience', label: 'Experience' },
@@ -33,6 +96,7 @@ export const nav = [
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
   { id: 'services', label: 'Services' },
+  { id: 'faq', label: 'FAQ' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -262,9 +326,52 @@ export const services = {
   closingText: 'Clear updates. Clean, readable code. Interfaces that work on every screen and for every user, not just on my laptop. You get a site you can maintain after I hand it over, and a developer who answers messages.',
 };
 
+export const faq = {
+  label: 'FAQ',
+  chapter: '08',
+  heading: ['QUESTIONS,', 'ANSWERED.'],
+  text: 'Short answers to what people usually ask before we start working together.',
+  // Each answer starts with the direct answer in the first sentence. Search engines
+  // and AI assistants (ChatGPT, Perplexity, Gemini, Google AI Overviews) quote these.
+  items: [
+    {
+      q: 'Who is Shahiru Roshen?',
+      a: 'Shahiru Roshen is a React and Next.js developer based in Gampaha, Sri Lanka. He works as an Associate React Developer at 3CS Asia, holds a BEng (Hons) in Software Engineering from the University of Westminster, and takes on freelance web projects.',
+    },
+    {
+      q: 'What services does Shahiru Roshen offer?',
+      a: 'Shahiru offers three services: web development (React and Next.js websites and web apps), frontend development (turning Figma designs into accessible, reusable components), and website optimisation (Core Web Vitals, technical SEO and accessibility fixes for existing sites).',
+    },
+    {
+      q: 'Is Shahiru Roshen available for freelance work?',
+      a: 'Yes. Shahiru takes on a small number of freelance projects alongside his role at 3CS Asia. He works remotely with clients in Sri Lanka and abroad and replies to new enquiries within 24 hours.',
+    },
+    {
+      q: 'Which technologies does Shahiru Roshen work with?',
+      a: 'Shahiru works mainly with React, Next.js, JavaScript and Tailwind CSS, with Node.js for back-end work and REST APIs for integrations. He uses Git for version control and deploys to Vercel, Netlify and Cloudflare.',
+    },
+    {
+      q: 'What websites has Shahiru Roshen built?',
+      a: 'Recent projects include Ramidu, an artist website that streams music through the Spotify Web API; Nimroo Bridal, a bridal couture catalogue with appointment enquiries; and Alokana Red, a fashion store with PayHere checkout and KOKO instalment payments.',
+    },
+    {
+      q: 'How much experience does Shahiru Roshen have?',
+      a: 'Shahiru has over two years of professional experience. He started with a year-long software engineering internship at Syeta Labs in 2022 and has worked as an Associate React Developer at 3CS Asia since 2023.',
+    },
+    {
+      q: 'Can Shahiru Roshen improve my website’s speed and SEO?',
+      a: 'Yes. Shahiru audits existing sites for Core Web Vitals, bundle size, image loading, technical SEO and accessibility, then fixes the issues he finds. His own builds target Lighthouse performance scores of 90 or higher.',
+    },
+    {
+      q: 'How do I hire Shahiru Roshen?',
+      a: 'Email connect.shahiru@gmail.com or call +94 77 009 7728 with a short description of your project, your timeline and your budget. Shahiru replies within 24 hours.',
+    },
+  ],
+};
+
 export const contact = {
   label: 'Contact',
-  chapter: '08',
+  chapter: '09',
   kicker: 'Stop scrolling. Start building.',
   text: 'I’m taking on a small number of freelance projects. Tell me what you’re building and I’ll get back to you within a day.',
   cta: 'LET’S TALK',
