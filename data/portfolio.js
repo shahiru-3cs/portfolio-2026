@@ -18,6 +18,7 @@ export const site = {
   location: 'Gampaha, Sri Lanka', // DUMMY
   email: 'connect.shahiru@gmail.com', // DUMMY
   phone: '+94 77 009 7728', // DUMMY
+  whatsappMessage: 'Hi Shahiru, I visited your portfolio and would like to discuss a project (Web Development / SEO).',
   // Used by the live "clock's running" counter (your first day as a developer). DUMMY date.
   careerStart: '2022-06-01T09:00:00+05:30',
   socials: [

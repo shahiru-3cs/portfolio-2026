@@ -3320,6 +3320,130 @@ html.is-loading .hero__float {
     bottom: 24px;
   }
 }
+
+/* ============ WHATSAPP FLOATING BUTTON ============ */
+
+.whatsapp-btn {
+  position: fixed;
+  right: var(--pad);
+  bottom: 22px;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow:
+    0 10px 25px -4px rgba(37, 211, 102, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    background 0.25s ease;
+  will-change: transform;
+}
+
+.whatsapp-btn::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  opacity: 0;
+  animation: wa-pulse 3s infinite cubic-bezier(0.4, 0, 0.6, 1);
+  pointer-events: none;
+}
+
+@keyframes wa-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.whatsapp-btn svg {
+  width: 27px;
+  height: 27px;
+  fill: currentColor;
+  transition: transform 0.3s var(--ease);
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: #22bf5b;
+  box-shadow:
+    0 14px 30px -4px rgba(37, 211, 102, 0.6),
+    0 6px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.whatsapp-btn:hover svg {
+  transform: scale(1.08);
+}
+
+.whatsapp-btn:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.whatsapp-btn__tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: rgba(18, 18, 18, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  font-family: var(--font-body), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.25s var(--ease);
+}
+
+.whatsapp-btn:hover .whatsapp-btn__tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 900px) {
+  .whatsapp-btn {
+    width: 48px;
+    height: 48px;
+    bottom: 24px;
+  }
+
+  .whatsapp-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .whatsapp-btn__tooltip {
+    display: none;
+  }
+}
 /* ---------- 08 · FAQ (answer-first content for search + AI engines) ---------- */
 
 .faq {
