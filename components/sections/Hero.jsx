@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { hero, site } from '../../data/portfolio';
-import { useScrollProgress } from '../../lib/scroll';
+import { useScrollProgress, TOUCH_MEDIA } from '../../lib/scroll';
 import PatternTile from '../ui/PatternTile';
 import { Chars } from '../ui/Motion';
 
@@ -35,7 +35,8 @@ const CARDS = [
 
 export default function Hero() {
   const ref = useRef(null);
-  useScrollProgress(ref, 'pin');
+  // Desktop: pinned 3D fly-through. Phones: static hero (see globals.css), so skip it.
+  useScrollProgress(ref, 'pin', undefined, '--p', TOUCH_MEDIA);
 
   // Mouse parallax: eased --mx / --my in -1..1
   useEffect(() => {
