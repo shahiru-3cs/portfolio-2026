@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   const cleanPhone = rawPhone.replace(/[^0-9]/g, '');
   const message =
     site.whatsappMessage ||
-    'Hi Shahiru, I visited your portfolio and would like to discuss a project (Web Development / SEO).';
+    'Hi Shahiru, I visited your portfolio and would like to start a Web Development / SEO project.';
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
 
   return (
