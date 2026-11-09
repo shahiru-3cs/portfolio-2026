@@ -59,16 +59,16 @@ const InkReveal = forwardRef(function InkReveal({ className = '' }, ref) {
     const ctx = c.getContext('2d');
 
     if (p <= 0) {
-      c.style.visibility = 'visible';
+      if (c.style.visibility !== 'visible') c.style.visibility = 'visible';
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, s.w, s.h);
       return;
     }
     if (p >= 1) {
-      c.style.visibility = 'hidden';
+      if (c.style.visibility !== 'hidden') c.style.visibility = 'hidden';
       return;
     }
-    c.style.visibility = 'visible';
+    if (c.style.visibility !== 'visible') c.style.visibility = 'visible';
 
     const e = ease(p);
     const span = s.fmax - s.fmin;

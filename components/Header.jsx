@@ -12,7 +12,7 @@ export default function Header() {
   useEffect(() => {
     const on = () => {
       const d = window.scrollY > window.innerHeight * 0.55;
-      setDocked(d);
+      setDocked((prev) => (prev !== d ? d : prev));
       if (!d) setOpen(false);
     };
     on();

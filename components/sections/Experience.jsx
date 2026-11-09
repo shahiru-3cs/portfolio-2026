@@ -45,11 +45,11 @@ export default function Experience() {
             {(role.points || role.projects).map((p) => {
               n += 1;
               return (
-                <Reveal as="article" className="xp__row" key={p.name} threshold={0.35}>
+                <Reveal as="article" className="xp__row" key={p.name || p.title} threshold={0.35}>
                   <div className="xp__meta">
                     <span className="xp__kicker">At {role.company}</span>
-                    <h3>{p.name}</h3>
-                    <span className="xp__num">{String(n).padStart(2, '0')}</span>
+                    <h3>{p.name || p.title}</h3>
+                    {/* <span className="xp__num">{String(n).padStart(2, '0')}</span> */}
                   </div>
                   <div className="xp__desc">
                     <p>{p.desc}</p>

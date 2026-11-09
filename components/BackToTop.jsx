@@ -12,7 +12,8 @@ export default function BackToTop() {
     const on = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const k = max > 0 ? window.scrollY / max : 0;
-      setShown(window.scrollY > window.innerHeight * 1.2);
+      const shouldShow = window.scrollY > window.innerHeight * 1.2;
+      setShown((prev) => (prev !== shouldShow ? shouldShow : prev));
       if (ring.current) ring.current.style.strokeDashoffset = String(100 - k * 100);
     };
     on();

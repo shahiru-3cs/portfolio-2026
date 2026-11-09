@@ -6,6 +6,11 @@ import { useEffect } from 'react';
 export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    // Disable Lenis on touch devices where native momentum scrolling is hardware-accelerated
+    // and Lenis rAF conflicts, causing stutter and flickering across sections
+    const isTouch = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
+    if (isTouch) return undefined;
+
     let lenis;
     let raf = 0;
     let cancelled = false;

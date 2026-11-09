@@ -94,61 +94,49 @@ export const experience = {
   headingStart: 'IT STARTED AS ONE',
   headingEnd: 'INTERNSHIP.',
   headingLine2: 'IT RARELY STAYS THAT WAY.',
-  sub: 'Two companies, five projects. Here’s the path so far.',
+  sub: 'Two companies, continuous growth. Here’s the path so far.',
   roles: [
     {
       company: '3CS Asia',
       title: 'Associate React Developer',
-      period: '2023 — Present', // DUMMY dates
-      projects: [
-        // DUMMY projects
+      period: '2023 — Present',
+      points: [
         {
-          name: 'Client Admin Dashboard',
-          desc: 'A React dashboard with role-based access, filterable data tables and live charts for a logistics client.',
-          tech: ['React', 'Tailwind CSS', 'REST API'],
-          mock: 'table',
-          pattern: 'checker',
-          palette: 'ink',
+          name: 'Create Next.js & React Websites',
+          desc: 'Architecting and developing fast, responsive web applications with Next.js and React, prioritizing clean code, structured routing, SEO, and accessible user experiences.',
+          tech: ['Next.js', 'React', 'JavaScript', 'Tailwind CSS'],
         },
         {
-          name: 'Corporate Website Revamp',
-          desc: 'Rebuilt a slow multi-page site in Next.js. Lighthouse performance went from the 50s to the high 90s.',
-          tech: ['Next.js', 'SEO', 'Vercel'],
-          mock: 'hero',
-          pattern: 'waves',
-          palette: 'cobalt',
+          name: 'Create Reusable Components',
+          desc: 'Designing modular, scalable UI component libraries with Tailwind CSS to ensure design consistency, streamline feature delivery, and eliminate code duplication.',
+          tech: ['React', 'Tailwind CSS', 'Component Architecture', 'UI/UX'],
         },
         {
-          name: 'Booking Platform UI',
-          desc: 'A reusable Tailwind component library and a three-step booking flow shared across two products.',
-          tech: ['React', 'Tailwind CSS', 'Storybook'],
-          mock: 'grid',
-          pattern: 'dots',
-          palette: 'mustard',
+          name: 'Improve Web Performance',
+          desc: 'Auditing bundle sizes, code-splitting, lazy-loading assets, and optimizing Core Web Vitals to deliver smooth interactions and 90+ Lighthouse performance scores.',
+          tech: ['Performance', 'Core Web Vitals', 'Lighthouse', 'SEO'],
         },
       ],
     },
     {
       company: 'Syeta Labs',
       title: 'Software Engineer Intern',
-      period: '2022 — 2023', // DUMMY dates
-      projects: [
-        // DUMMY projects
+      period: '2022 — 2023',
+      points: [
         {
-          name: 'Internal HR Portal',
-          desc: 'React front end for leave requests, attendance and approvals, used by the whole office every day.',
-          tech: ['React', 'JavaScript', 'Firebase'],
-          mock: 'chart',
-          pattern: 'zigzag',
-          palette: 'blush',
+          name: 'Build Responsive Interfaces',
+          desc: 'Transformed Figma design concepts into mobile-first, pixel-accurate web interfaces using React, HTML5, and modern CSS/Tailwind.',
+          tech: ['React', 'JavaScript', 'HTML5 & CSS3', 'Responsive Design'],
         },
         {
-          name: 'Landing Page Builder',
-          desc: 'Configurable page sections so the marketing team could launch new pages without waiting on a developer.',
-          tech: ['React', 'CSS Modules', 'Netlify'],
-          mock: 'columns',
-          pattern: 'scallop',
-          palette: 'ember',
+          name: 'State Management & React Hooks',
+          desc: 'Implemented interactive UI workflows, state handling, and client-side form validations using React hooks and functional component best practices.',
+          tech: ['React Hooks', 'State Management', 'ES6+'],
+        },
+        {
+          name: 'API Integration & Async Flows',
+          desc: 'Connected frontend components with backend REST APIs, handled async data loading states, resolved cross-browser defects, and collaborated with Git.',
+          tech: ['REST APIs', 'Git', 'Debugging', 'Async/Await'],
         },
       ],
     },
@@ -189,7 +177,7 @@ export const projects = {
       mock: 'chart',
       pattern: 'dots',
       palette: 'mustard',
-      glow: '#1DB954',
+      glow: '#E8442E',
     },
     {
       name: 'Nimroo Bridal',
@@ -203,7 +191,7 @@ export const projects = {
       mock: 'grid',
       pattern: 'checker',
       palette: 'ember',
-      glow: '#E8442E',
+      glow: '#fef1f2',
     },
     {
       name: 'Alokana Red',
@@ -217,7 +205,7 @@ export const projects = {
       mock: 'columns',
       pattern: 'waves',
       palette: 'cobalt',
-      glow: '#2F5BFF',
+      glow: '#7f0002ff',
     },
   ],
 };
